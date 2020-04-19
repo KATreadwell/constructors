@@ -7,15 +7,15 @@
 
 
 //constructor Letter which shows either " " or "_"
-let Letter = function(character){
-    this.letter = character;
+let Letter = function(letter) {
+    this.letter = letter;
     this.guess = false;
     this.toString = function(){
-        if (this.letter === " "){
+        if (this.letter === " ") {
             this.guess = true;
             return " ";
         } else {
-            if (this.guess === false){
+            if (this.guess === false) {
                 return "_";
             } else {
                 return this.letter;
@@ -23,8 +23,8 @@ let Letter = function(character){
         }
     };
     //if letter guessed is correct, assign this.guess to true
-    this.guessTrue = function (guessTrue){
-        if (guessTrue === this.letter){
+    this.guessTrue = function (correctLetter){
+        if (correctLetter === this.letter){
             this.guess = true;
         }
     }

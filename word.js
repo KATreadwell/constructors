@@ -7,25 +7,26 @@
 
 const Letter = require("./letter")
 
+//Word constructor that creates object that represents word user is trying to guess
 function Word(answer){
     this.objArray = [];
 
     for (let i = 0; i < answer.length; i++){
         let letter = new Letter (answer[i]);
-        this.objAnswerArray.push(letter);
+        this.objArray.push(letter);
     }
 
-    this.strWord = function (){
+    this.strWord = function () {
         strWord = "";
-        for (let i = 0; i < this.objAnswerArray.length; i++){
-            strWord += this.objAnswerArray[i] + " ";
+        for (let i = 0; i < this.objArray.length; i++) {
+            strWord += this.objrArray[i] + " ";
         }
         console.log(strWord + "\n");
     }
 
-    this.userGuess = function (input){
-        for (let i = 0; i < this.objAnswerArray.lenth; i++){
-            this.objAnswerArray[i].guess(input);
+    this.userGuess = function (input) {
+        for (let i = 0; i < this.objArray.lenth; i++){
+            this.objArray[i].guess(input);
         }
     }
 }
