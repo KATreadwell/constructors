@@ -5,4 +5,30 @@
 //function that takes a character as an argument and calls guess function (2nd functionin Letter.js) on each letter object
 //only requires letter.js
 
-const word = require("./letter")
+const Letter = require("./letter")
+
+function Word(answer){
+    this.objArray = [];
+
+    for (let i = 0; i < answer.length; i++){
+        let letter = new Letter (answer[i]);
+        this.objAnswerArray.push(letter);
+    }
+
+    this.strWord = function (){
+        strWord = "";
+        for (let i = 0; i < this.objAnswerArray.length; i++){
+            strWord += this.objAnswerArray[i] + " ";
+        }
+        console.log(strWord + "\n");
+    }
+
+    this.userGuess = function (input){
+        for (let i = 0; i < this.objAnswerArray.lenth; i++){
+            this.objAnswerArray[i].guess(input);
+        }
+    }
+}
+
+module.exports = Word;
+

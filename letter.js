@@ -26,7 +26,7 @@ let Letter = function(character){
 
     this.guessTrue = function (guessTrue){
         if (guessTrue === this.letter){
-            this.guessed = true;
+            this.guess = true;
         }
     }
 }
