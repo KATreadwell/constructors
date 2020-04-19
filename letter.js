@@ -5,9 +5,8 @@
 //function that takes character as an argument and checks against underlying character, updating stored boolean value to true if correct
 //doesn't require any other files
 
-const inquirer = require("inquirer");
-const prompt = require("prompt");
 
+//constructor Letter which shows either " " or "_"
 let Letter = function(character){
     this.letter = character;
     this.guess = false;
@@ -23,7 +22,7 @@ let Letter = function(character){
             }
         }
     };
-
+    //if letter guessed is correct, assign this.guess to true
     this.guessTrue = function (guessTrue){
         if (guessTrue === this.letter){
             this.guess = true;
@@ -33,7 +32,3 @@ let Letter = function(character){
 
 module.exports = Letter;
 
-
-
-
-module.exports = Letter;

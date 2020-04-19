@@ -2,8 +2,9 @@
 //randomly selects a word and uses Word constructor to store it
 //prompts user for each guess and keeps track of user's remaining guesses
 
-const Word = require("./word")
-const inquirer = require("inquirer")
+const Word = require("./word");
+const inquirer = require("inquirer");
+const prompt = require("prompt");
 
 function jeopardy() {
     let alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -12,7 +13,7 @@ function jeopardy() {
     let correctLetters = [];
     let guessesLeft = 5;
     let guessCorrect = [];
-    requireNewWord = false;
+    requireNewWord =
 
     if (requireNewWord) {
         let randomIndex = Math.floor(Math.random() * dinosaurs.length);
