@@ -9,13 +9,16 @@ const Letter = require("./letter")
 
 //Word constructor that creates object that represents word user is trying to guess
 function Word(answer){
+    //stores word to guess in objArray
     this.objArray = [];
 
+    //for length of answer, push letter
     for (let i = 0; i < answer.length; i++){
         let letter = new Letter (answer[i]);
         this.objArray.push(letter);
     }
 
+    //calls function from letter.js and displays characters
     this.strWord = function () {
         strWord = "";
         for (let i = 0; i < this.objArray.length; i++) {
@@ -24,6 +27,7 @@ function Word(answer){
         console.log(strWord + "\n");
     }
 
+    //store userGuess in objArray as userguess
     this.userGuess = function (input) {
         for (let i = 0; i < this.objArray.lenth; i++){
             this.objArray[i].guess(input);

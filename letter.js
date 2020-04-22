@@ -7,24 +7,28 @@
 
 
 //constructor Letter which shows either " " or "_"
-let Letter = function(letter) {
-    this.letter = letter;
-    this.guess = false;
-    this.toString = function(){
+class Letter {
+    constructor(letter) {
+        this.letter = letter;
+        this.guess = false;
+    }
+    toString() {
+        //this is to insert spaces between _ to be guessed
         if (this.letter === " ") {
-            this.guess = true;
             return " ";
         } else {
+            //incorrect guess, return _ 
             if (this.guess === false) {
                 return "_";
             } else {
+            //correct guess, return letter passed in as parameter
                 return this.letter;
             }
         }
     };
     //if letter guessed is correct, assign this.guess to true
-    this.guessTrue = function (correctLetter){
-        if (correctLetter === this.letter){
+    guessTrue(correctLetter) {
+        if (correctLetter === this.letter) {
             this.guess = true;
         }
     }

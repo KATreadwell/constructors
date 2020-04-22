@@ -6,39 +6,47 @@ const Word = require("./word");
 const inquirer = require("inquirer");
 
 
+
+let incorrectLetters = [];
+let correctLetters = [];
+let guessesLeft = 5;
+isDinoGuessed = false;
+let needNewWord = false;
+
+
+let letterArray = "abcdefghijklmnopqrstuvwxyz";
+
+
 //logic of the game
-function initializeGame() {
-    let alphabet = "abcdefghijklmnopqrstuvwxyz";
-    let incorrectLetters = [];
-    let correctLetters = [];
-    let guessesLeft = 5;
-    let dinosaurs = ["triceratops", "tyrannosaurus rex", "velociraptor", "stegasaurus", "diplodocus", "allosaurus"];
-    generateWord = false;
-    isWordComplete = false;
-    jeopardy();
+function jeopardy() {
+    if (needNewWord = true) {
+        function generateNewWord() {
+            let dinosaurs = ["triceratops", "tyrannosaurus rex", "velociraptor", "stegasaurus", "diplodocus", "allosaurus"];
+            let randomDinoIndex = Math.floor(Math.random() * dinosaurs.length);
+            let randomDinosaur = dinosaurs[randomDinoIndex];
+            computerGeneratedWord = new Word(randomDinosaur);
+        }
+        generateNewWord();
+    }
 
-    function jeopardy() {
-        let randomDinosaur = Math.floor(Math.random() * dinosaurs.length);
-        let wordToGuess = dinosaurs[randomDinosaur];
-        computerGeneratedWord = new Word(wordToGuess);
-
-        if (isWordComplete.includes(false)) {
-            inquirer
-                .prompt([
-                    {
-                        type: "input",
-                        message: "Guess a letter.",
-                        name: "userinput"
-                    }
-                ])
-                .then(function (input) {
-                    if (incorrectLetters.includes(input.userInput) || correctLetters.includes(input.user)) {
+    else{
+        inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "Guess a letter.",
+                name: "userinput"
+            }
+    
+        ])
+        .then(function (input) {
+                    if (incorrectLetters.includes(input.userInput) || correctLetters.includes(input.userInput)) {
                         console.log("Letter already guessed.");
                     } else {
-                        let letterCheck = [];
+                        let wordCheckArray = [];
                         computerGeneratedWord.userGuess(input.userInput);
-                        computerGeneratedWord.objArray.forEach(completeCheck);
-                        if (computerGeneratedWord.join('') === isWordComplete.join('')) {
+                        computerGeneratedWord.objArray.forEach(wordCheckArray);
+                        if (computerGeneratedWord.join('') === isDinoGuessed.join('')) {
                             console.log("Wrong");
                             incorrectLetters.push(input.userInput);
                             guessesLeft--;
@@ -46,32 +54,37 @@ function initializeGame() {
                             console.log("Correct");
                             correctLetters.push(input.userInput);
                         }
+                        computerGeneratedWord.log();
                         console.log("Guesses Left: " + guessesLeft);
                         console.log("Letters Guesses: " + incorrectLetters.join(" ,"));
-
+    
                         if (guessesLeft > 0) {
                             jeopardy();
                         } else {
                             console.log("Try again!");
-                            initializeGame();
+                            restartGame();
+                        }
+                        function wordCheck(key) {
+                            wordCheckArray.push(key.guessed);
                         }
                     }
-                    function completeCheck(key) {
-                        wordToGuess.push(key.guessed);
-                    }
+    
                 })
-
-        } else {
+        } 
+    }else {
             console.log("You know your dinosaurs!");
-            initializeGame()
+            restartGame();
         }
-
+    
+        function completeCheck(key) {
+            isWordComplete.push(key.guessed);
+        }
     }
 }
 
-
-
-
-
-
-
+function restartGame() {
+    incorrectLetters = [];
+    correctLetters = [];
+    guessesLeft = 5;
+    jeopardy();
+}
