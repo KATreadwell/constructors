@@ -9,11 +9,12 @@ let incorrectLetters = [];
 let correctLetters = [];
 let guessesLeft = 5;
 let isDinoGuessed = false;
-let needNewWord = true;
-
+let wordComplete = [];
 
 //logic of the game
-(function jeopardy() {
+jeopardy();
+function jeopardy() {
+    //need to generate new word
     if (needNewWord = true) {
         function generateNewWord() {
             let dinosaurs = ["triceratops", "tyrannosaurus rex", "velociraptor", "stegasaurus", "diplodocus", "allosaurus"];
@@ -33,22 +34,18 @@ let needNewWord = true;
                 message: "Guess a letter.",
                 name: "userinput"
             }
-
         ])
+        //check if userinput already guessed
         .then(function (input) {
             if (incorrectLetters.includes(input.userinput) || correctLetters.includes(input.userinput)) {
                 console.log("Letter already guessed.");
             } else {
+                //need to check userGuess against computerGeneratedWord
                 let wordCheckArray = [];
                 computerGeneratedWord.userGuess(input.userinput);
-                computerGeneratedWord.objArray.forEach(wordCheckArray);
-
-                wordCheckArray.forEach(function(value, index) {
-                    // this run for every item in the arr
-                    console.log('The value at index ' + index + ', is ' + value);
-                });
-
-                if (computerGeneratedWord.join('') === isDinoGuessed.join('')) {
+                computerGeneratedWord.objArray.forEach(wordCheck);
+                
+                if (wordCheckArray.join('') === wordComplete.join('')) {
                     console.log("Wrong");
                     incorrectLetters.push(input.userinput);
                     guessesLeft--;
@@ -56,7 +53,7 @@ let needNewWord = true;
                     console.log("Correct");
                     correctLetters.push(input.userinput);
                 }
-                computerGeneratedWord.log();
+
                 console.log("Guesses Left: " + guessesLeft);
                 console.log("Letters Guesses: " + incorrectLetters.join(" ,"));
 
@@ -77,7 +74,7 @@ let needNewWord = true;
             }
 
         })
-})(); 
+};
 
 
 
@@ -86,4 +83,4 @@ function restartGame() {
     correctLetters = [];
     guessesLeft = 5;
     jeopardy();
-}
+};
